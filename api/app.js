@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.static(path.join(__dirname, '../dist')));
+ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(cors())
 
 app.use('/', indexRouter);
@@ -40,7 +40,7 @@ app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.use(express.static(path.join(__dirname, "../dist")));
+// app.use(express.static(path.join(__dirname, "../dist")));
 app.get("*", function (_, res) {
   res.sendFile(
     path.join(__dirname, "../dist/index.html"),
