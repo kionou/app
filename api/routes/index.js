@@ -3,7 +3,7 @@ var router = express.Router();
 var axios = require('axios')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   
   axios
   .get("https://simro-kberthe.pythonanywhere.com/api/marche")
