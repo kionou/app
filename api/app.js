@@ -40,15 +40,15 @@ app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.render('error');
 });
-// app.use(express.static(path.join(__dirname, "../dist")));
-// app.get("*", function (_, res) {
-//   res.sendFile(
-//     path.join(__dirname, "../dist/index.html"),
-//     function (err) {
-//       res.status(500).send(err);
-//     }
-//   );
-// });
+app.use(express.static(path.join(__dirname, "../dist")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "../dist/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
 
 
 module.exports = app;
