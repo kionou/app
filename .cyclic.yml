@@ -1,0 +1,28 @@
+version: '1.0'
+
+jobs:
+  build:
+    environment: nodejs-16
+    steps:
+      - run: npm ci
+      - run: npm run build
+      # Ajoutez les étapes suivantes pour construire le serveur Node.js
+      - run: cd api && npm ci
+      - run: cd api && npm run build
+
+  deploy:
+    environment: nodejs-16
+    steps:
+      - attach_workspace:
+          at: /build
+      # Ajoutez les étapes suivantes pour démarrer le serveur Node.js
+      - run: cd api && npm install --production
+      - run: cd api && npm start
+
+workflows:
+  main:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
